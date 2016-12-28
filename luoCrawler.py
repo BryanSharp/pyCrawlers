@@ -5,6 +5,9 @@ import re
 import urllib2
 from bs4 import BeautifulSoup
 import sys
+import lxml.html
+import time
+
 reload(sys)
 sys.setdefaultencoding("utf-8")
 def download(url,user_agent='Android',proxy=None,num_retries=1):
@@ -24,6 +27,14 @@ def findChs(pattern,html):
     except IndexError:
         return None
 
+def getContentFromHtmlByBS(html):
+    soup=BeautifulSoup(html,'html.parser')
+    return soup.select(".article-content")[0].get_text()
+
+def getContentFromHtmlByLxml(html):
+    tree=lxml.html.fromstring(html)
+    return tree.find_class('article-content')[0].text_content()
+
 print '开始'
 titleFile=open('luo.txt','w')
 count=0
@@ -36,12 +47,13 @@ for page in itertools.count(720):
             break
         title=findChs('<title>(.*?)</title>',html).replace('文字版_罗辑思维视频文字版更新_罗友之家','').strip()
         if title.startswith('No'):
-            soup=BeautifulSoup(html,'html.parser')
-            content=soup.select(".article-content")[0].get_text()
+            start=time.time()
+            content=getContentFromHtmlByLxml(html)
+            print 'time consumed:',time.time()-start
             if content==None:
                 print 'content is none'
             else:
-                print content[99:200]
+                print content[50:100]
                 contentFile=open(title+'.txt','w')
                 contentFile.write(content)
                 contentFile.close()

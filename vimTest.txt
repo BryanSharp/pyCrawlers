@@ -1,0 +1,32 @@
+
+听说使用visual模式可以很方便地进行剪切黏贴
+
+press v and then move the cursor to cover the text you want to operate, the press y to copy it, or press d to cut it
+
+we can test the text replace function here as well.
+try to replace see to saw .
+use 
+:%s/see/saw
+从某行之后开始替换
+:15,$s/see/saw
+
+以下是测试区域：
+
+================================================================================
+123444444
+1213放
+ioasndfa sdlfjasldjf  sldfj ;asdljfa 
+alsdkjflajsdlfjasldjsldf 
+
+alsdjfla
+拉伸件代发件速度快解可以很方便地进行剪切黏贴
+
+我来试试
+123444444
+1213放
+ioasndfa sdlfjasldjf  sldfj ;asdljfa 
+alsdkjflajsdlfjasl
+this is a word
+
+
+you can saw the target here
