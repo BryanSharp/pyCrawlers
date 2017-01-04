@@ -38,7 +38,7 @@ def getContentFromHtmlByLxml(html):
 print '开始'
 titleFile=open('luo.txt','w')
 count=0
-for page in itertools.count(720):
+for page in itertools.count(1037):
     if page<1500:
         url='http://www.luofans.com/blogs/%d'%page
         html=download(url)
