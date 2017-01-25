@@ -8,6 +8,7 @@ import sys
 import lxml.html
 import time
 
+START_PAGE=1038
 reload(sys)
 sys.setdefaultencoding("utf-8")
 def download(url,user_agent='Android',proxy=None,num_retries=1):
@@ -38,7 +39,7 @@ def getContentFromHtmlByLxml(html):
 print '开始'
 titleFile=open('luo.txt','w')
 count=0
-for page in itertools.count(1037):
+for page in itertools.count(START_PAGE):
     if page<1500:
         url='http://www.luofans.com/blogs/%d'%page
         html=download(url)
